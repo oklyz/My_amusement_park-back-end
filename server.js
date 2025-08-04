@@ -2,7 +2,7 @@
 const express = require("express")
 require("dotenv").config
 const app = express()
-
+const path = require("path")
 
 // Initailize app
 
@@ -23,7 +23,7 @@ app.use(logger())
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
+app.use(express.static(path.join(__dirname, "public")))
 // Require Routes
 
 
