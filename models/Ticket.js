@@ -14,11 +14,7 @@ const ticketSchema = new mongoose.Schema(
     date: {
       type: Date,
       required: true,
-    },
-    pirce: {
-      type: Number,
-      required: true
-    },
+    }
   },
   {
     timestamps: true

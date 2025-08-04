@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const User = require("../models/user")
 const middleware = require("../middlewares")
 
 const Register = async (req, res) => {
@@ -34,8 +34,11 @@ const Login = async (req, res) => {
 
     if (matched) {
       let payload = {
+        firstName: firstName,
+        lastName: lastName,
+        email: user.email,
+        avatar: user.avatar,
         id: user._id,
-        email: user.email
       }
 
       let token = middleware.createToken(payload)
