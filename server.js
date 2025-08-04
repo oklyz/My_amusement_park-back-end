@@ -24,7 +24,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
 // Require Routes
 
+const authRouter = require("./routes/auth")
+
 // use Routes
+
+app.use("/auth", authRouter)
 
 // Listener
 app.listen(port, () => {
