@@ -9,14 +9,12 @@ const path = require("path")
 // Database Configuration
 const db = require("./config/db")
 
-
-
 // set Port Configuration
 const port = process.env.PORT ? process.env.PORT : 3001
 
 // Middlewares
 const logger = require("morgan")
-const cors = require('cors')
+const cors = require("cors")
 
 // use Middlewares
 app.use(logger())
@@ -26,9 +24,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
 // Require Routes
 
-
 // use Routes
-
 
 // Listener
 app.listen(port, () => {
