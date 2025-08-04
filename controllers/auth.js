@@ -4,7 +4,7 @@ const middleware = require("../middlewares")
 const Register = async (req, res) => {
   try {
     
-    const {email, password, name} = req.body
+    const {email, password, firstName, lastName} = req.body
 
     let passwordDigest = await middleware.hashPassword(password)
 
@@ -12,7 +12,7 @@ const Register = async (req, res) => {
     if (existingUser) {
       return res.status(400).send("A user with that email has already been registered!")
     } else {
-      const user = await User.create({ name, email, passwordDigest })
+      const user = await User.create({ firstName, lastName, email, passwordDigest })
 
       res.status(200).send(user)
     }
@@ -39,6 +39,7 @@ const Login = async (req, res) => {
       }
 
       let token = middleware.createToken(payload)
+      return res.status(200).send({ user: payload, token })
     }
     res.status(401).send({ status: "Error", msg: "Unauthorized" })
   } catch (error) {
