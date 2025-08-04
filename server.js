@@ -25,10 +25,12 @@ app.use(express.static(path.join(__dirname, "public")))
 // Require Routes
 
 const authRouter = require("./routes/auth")
+const ticketRouter = require("./routes/ticket")
 
 // use Routes
 
 app.use("/auth", authRouter)
+app.use("/ticket", ticketRouter)
 
 // Listener
 app.listen(port, () => {
