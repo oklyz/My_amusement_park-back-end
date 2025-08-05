@@ -34,8 +34,8 @@ const Login = async (req, res) => {
 
     if (matched) {
       let payload = {
-        firstName: firstName,
-        lastName: lastName,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         avatar: user.avatar,
         id: user._id,
