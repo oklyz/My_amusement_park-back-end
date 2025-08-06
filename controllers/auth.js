@@ -3,10 +3,16 @@ const middleware = require("../middlewares")
 
 const Register = async (req, res) => {
   try {
-    
-    const {email, password, firstName, lastName} = req.body
+
+    const {email, password, confirmPassword, firstName, lastName} = req.body
+
+
+    if (password !== confirmPassword) {
+      return res.status(400).send("Password must match")
+    }
 
     let passwordDigest = await middleware.hashPassword(password)
+
 
     let existingUser = await User.findOne({ email })
     if (existingUser) {
@@ -85,6 +91,22 @@ const UpdatePassword = async (req, res) => {
   }
 }
 
+const DeleteUser = async (req, res) => {
+
+  try {
+    await User.findByIdAndDelete(req.params.user_id)
+
+    res.status(200).send({ status: "User Delete!"})
+  } catch (error) {
+    console.log(error)
+    res.status(401).send({
+      status: "Error",
+      msg: "An error has occurred while deleting user"
+    })
+  }
+
+}
+
 const CheckSession = async (req, res) => {
   const { payload } = res.locals
 
@@ -96,4 +118,5 @@ module.exports = {
   Login,
   UpdatePassword,
   CheckSession,
+  DeleteUser
 }
