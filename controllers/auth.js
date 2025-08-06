@@ -7,7 +7,7 @@ const Register = async (req, res) => {
     const {email, password, confirmPassword, firstName, lastName} = req.body
 
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword || password === "") {
       return res.status(400).send("Password must match")
     }
 
