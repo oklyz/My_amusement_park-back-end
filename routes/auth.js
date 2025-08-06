@@ -10,11 +10,18 @@ router.put(
   middleware.verifyToken,
   controller.UpdatePassword
 )
+
+router.delete("/user/:user_id", 
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.DeleteUser)
+
 router.get(
   "/session",
   middleware.stripToken,
   middleware.verifyToken,
   controller.CheckSession
 )
+
 
 module.exports = router
